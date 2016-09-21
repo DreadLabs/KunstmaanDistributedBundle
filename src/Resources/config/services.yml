@@ -1,0 +1,7 @@
+services:
+
+    #mc_fit_kunstmaan_distibuted.cache_page_events.subscriber:
+    #    class: DreadLabs\KunstmaanDistributedBundle\EventListener\CachePageEventsSubscriber
+    #    arguments: ['@fos_http_cache.cache_manager']
+    #    tags:
+    #        - { name: kernel.event_subscriber }
