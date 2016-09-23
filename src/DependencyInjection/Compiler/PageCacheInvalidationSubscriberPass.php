@@ -15,6 +15,7 @@ use DreadLabs\KunstmaanDistributedBundle\EventListener\PageCacheInvalidationSubs
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * PageCacheInvalidationSubscriberPass.
@@ -50,7 +51,7 @@ class PageCacheInvalidationSubscriberPass implements CompilerPassInterface
         $definition = new Definition(
             PageCacheInvalidationSubscriber::class,
             [
-                '@fos_http_cache.cache_manager',
+                new Reference('fos_http_cache.cache_manager'),
             ]
         );
         $definition->addTag('kernel.event_subscriber');
