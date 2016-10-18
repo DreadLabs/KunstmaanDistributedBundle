@@ -64,21 +64,21 @@ class PageCacheInvalidationSubscriber implements EventSubscriberInterface
     public function onUnpublishPage(NodeEvent $event)
     {
         $this->cacheManager->invalidatePath(
-            $event->getNodeTranslation()->getFullSlug()
+            $event->getNodeTranslation()->getUrl()
         )->flush();
     }
 
     public function onDeletePage(NodeEvent $event)
     {
         $this->cacheManager->invalidatePath(
-            $event->getNodeTranslation()->getFullSlug()
+            $event->getNodeTranslation()->getUrl()
         )->flush();
     }
 
     public function onUpdatePage(NodeEvent $event)
     {
         $this->cacheManager->invalidatePath(
-            $event->getNodeTranslation()->getFullSlug()
+            $event->getNodeTranslation()->getUrl()
         )->flush();
     }
 }
