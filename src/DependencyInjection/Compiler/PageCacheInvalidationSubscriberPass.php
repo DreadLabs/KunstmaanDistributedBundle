@@ -52,6 +52,8 @@ class PageCacheInvalidationSubscriberPass implements CompilerPassInterface
             PageCacheInvalidationSubscriber::class,
             [
                 new Reference('fos_http_cache.cache_manager'),
+                new Reference('kunstmaan_admin.domain_configuration'),
+                new Reference('router'),
             ]
         );
         $definition->addTag('kernel.event_subscriber');
