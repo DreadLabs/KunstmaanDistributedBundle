@@ -12,9 +12,11 @@
 namespace DreadLabs\KunstmaanDistributedBundle\EventListener;
 
 use FOS\HttpCacheBundle\CacheManager;
+use Kunstmaan\AdminBundle\Helper\DomainConfigurationInterface;
 use Kunstmaan\NodeBundle\Event\Events;
 use Kunstmaan\NodeBundle\Event\NodeEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * PageCacheInvalidationSubscriber.
@@ -29,9 +31,24 @@ class PageCacheInvalidationSubscriber implements EventSubscriberInterface
      */
     private $cacheManager;
 
-    public function __construct(CacheManager $cacheManager)
-    {
+    /**
+     * @var bool
+     */
+    private $isMultiLanguage;
+
+    /**
+     * @var UrlGeneratorInterface
+     */
+    private $urlGenerator;
+
+    public function __construct(
+        CacheManager $cacheManager,
+        DomainConfigurationInterface $domainConfiguration,
+        UrlGeneratorInterface $urlGenerator
+    ) {
         $this->cacheManager = $cacheManager;
+        $this->isMultiLanguage = $domainConfiguration->isMultiLanguage();
+        $this->urlGenerator = $urlGenerator;
     }
 
     /**
