@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace DreadLabs\KunstmaanDistributedBundle\tests\EventListener;
+namespace DreadLabs\KunstmaanDistributedBundle\tests\EventListener\PageCacheInvalidationSubscriber;
 
 use DreadLabs\KunstmaanDistributedBundle\EventListener\PageCacheInvalidationSubscriber;
 use FOS\HttpCacheBundle\CacheManager;
@@ -19,7 +19,7 @@ use Kunstmaan\NodeBundle\Event\Events;
 use Kunstmaan\NodeBundle\Event\NodeEvent;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class PageCacheInvalidationSubscriberTest extends \PHPUnit_Framework_TestCase
+class SingleLanguageTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var CacheManager|\PHPUnit_Framework_MockObject_MockObject
@@ -84,6 +84,11 @@ class PageCacheInvalidationSubscriberTest extends \PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('isMultiLanguage')
             ->willReturn(false);
+        $this->urlGenerator
+            ->expects($this->once())
+            ->method('generate')
+            ->with($this->equalTo('_slug'), $this->equalTo(['url' => 'path/to/page']))
+            ->willReturn('path/to/page');
 
         $this->nodeEvent
             ->expects($this->once())
@@ -121,6 +126,11 @@ class PageCacheInvalidationSubscriberTest extends \PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('isMultiLanguage')
             ->willReturn(false);
+        $this->urlGenerator
+            ->expects($this->once())
+            ->method('generate')
+            ->with($this->equalTo('_slug'), $this->equalTo(['url' => 'path/to/another/page']))
+            ->willReturn('path/to/another/page');
 
         $this->nodeEvent
             ->expects($this->once())
@@ -158,6 +168,11 @@ class PageCacheInvalidationSubscriberTest extends \PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('isMultiLanguage')
             ->willReturn(false);
+        $this->urlGenerator
+            ->expects($this->once())
+            ->method('generate')
+            ->with($this->equalTo('_slug'), $this->equalTo(['url' => 'path/to/page/three']))
+            ->willReturn('path/to/page/three');
 
         $this->nodeEvent
             ->expects($this->once())
