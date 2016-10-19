@@ -13,6 +13,7 @@ namespace DreadLabs\KunstmaanDistributedBundle\EventListener;
 
 use FOS\HttpCacheBundle\CacheManager;
 use Kunstmaan\AdminBundle\Helper\DomainConfigurationInterface;
+use Kunstmaan\NodeBundle\Entity\NodeTranslation;
 use Kunstmaan\NodeBundle\Event\Events;
 use Kunstmaan\NodeBundle\Event\NodeEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -81,21 +82,34 @@ class PageCacheInvalidationSubscriber implements EventSubscriberInterface
     public function onUnpublishPage(NodeEvent $event)
     {
         $this->cacheManager->invalidatePath(
-            $event->getNodeTranslation()->getUrl()
+            $this->generateFullyQualifiedUrl($event->getNodeTranslation())
         )->flush();
+    }
+
+    private function generateFullyQualifiedUrl(NodeTranslation $nodeTranslation)
+    {
+        if ($this->isMultiLanguage) {
+            return $this->urlGenerator->generate(
+                '_slug', ['url' => $nodeTranslation->getUrl(), '_locale' => $nodeTranslation->getLang()]
+            );
+        }
+
+        return $this->urlGenerator->generate(
+            '_slug', ['url' => $nodeTranslation->getUrl()]
+        );
     }
 
     public function onDeletePage(NodeEvent $event)
     {
         $this->cacheManager->invalidatePath(
-            $event->getNodeTranslation()->getUrl()
+            $this->generateFullyQualifiedUrl($event->getNodeTranslation())
         )->flush();
     }
 
     public function onUpdatePage(NodeEvent $event)
     {
         $this->cacheManager->invalidatePath(
-            $event->getNodeTranslation()->getUrl()
+            $this->generateFullyQualifiedUrl($event->getNodeTranslation())
         )->flush();
     }
 }
