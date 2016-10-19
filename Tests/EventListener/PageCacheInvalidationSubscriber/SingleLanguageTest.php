@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace DreadLabs\KunstmaanDistributedBundle\tests\EventListener\PageCacheInvalidationSubscriber;
+namespace DreadLabs\KunstmaanDistributedBundle\Tests\EventListener\PageCacheInvalidationSubscriber;
 
 use DreadLabs\KunstmaanDistributedBundle\EventListener\PageCacheInvalidationSubscriber;
 use FOS\HttpCacheBundle\CacheManager;

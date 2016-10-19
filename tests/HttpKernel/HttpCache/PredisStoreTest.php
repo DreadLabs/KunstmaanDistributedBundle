@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace DreadLabs\KunstmaanDistributedBundle\tests\HttpKernel\HttpCache;
+namespace DreadLabs\KunstmaanDistributedBundle\Tests\HttpKernel\HttpCache;
 
 use DreadLabs\KunstmaanDistributedBundle\HttpKernel\HttpCache\PredisStore;
 use Predis\Client;

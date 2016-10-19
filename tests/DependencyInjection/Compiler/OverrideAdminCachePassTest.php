@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace DreadLabs\KunstmaanDistributedBundle\tests\DependencyInjection\Compiler;
+namespace DreadLabs\KunstmaanDistributedBundle\Tests\DependencyInjection\Compiler;
 
 use Doctrine\Common\Cache\PredisCache;
 use DreadLabs\KunstmaanDistributedBundle\DependencyInjection\Compiler\OverrideAdminCachePass;
