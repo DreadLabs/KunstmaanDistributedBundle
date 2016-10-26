@@ -37,6 +37,8 @@ Add the following container parameters to your `parameters.yml.dist`:
     http_cache_proxy_servers: [localhost:80]
     # Base-URL of the application
     http_cache_proxy_baseurl: localhost
+    # Proxy client options
+    http_cache_proxy_options: { purge_method: '', ... }
 
 Add the following configuration keys to your `parameters.yml.dist`:
 

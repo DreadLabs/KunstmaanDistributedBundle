@@ -13,6 +13,7 @@ namespace DreadLabs\KunstmaanDistributedBundle;
 
 use DreadLabs\KunstmaanDistributedBundle\DependencyInjection\Compiler\OverrideAdminCachePass;
 use DreadLabs\KunstmaanDistributedBundle\DependencyInjection\Compiler\PageCacheInvalidationSubscriberPass;
+use DreadLabs\KunstmaanDistributedBundle\DependencyInjection\Compiler\SymfonyClientPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -24,5 +25,6 @@ class DreadLabsKunstmaanDistributedBundle extends Bundle
 
         $container->addCompilerPass(new OverrideAdminCachePass());
         $container->addCompilerPass(new PageCacheInvalidationSubscriberPass());
+        $container->addCompilerPass(new SymfonyClientPass());
     }
 }
