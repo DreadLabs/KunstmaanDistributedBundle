@@ -39,6 +39,8 @@ Add the following container parameters to your `parameters.yml.dist`:
     http_cache_proxy_baseurl: localhost
     # Proxy client options
     http_cache_proxy_options: { purge_method: '', ... }
+    # Change / customize if something prevents the custom HTTP Method
+    http_cache_purge_method: 'PURGE'
 
 Add the following configuration keys to your `parameters.yml.dist`:
 

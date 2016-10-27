@@ -41,6 +41,7 @@ class HttpCache extends FrameworkHttpCache implements CacheInvalidationInterface
             new PurgeSubscriber(
                 [
                     'purge_client_ips' => $kernel->getContainer()->getParameter('http_cache_purge_client_ips'),
+                    'purge_method' => $kernel->getContainer()->getParameter('http_cache_purge_method'),
                 ]
             )
         );
