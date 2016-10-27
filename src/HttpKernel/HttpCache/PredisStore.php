@@ -62,6 +62,11 @@ class PredisStore implements StoreInterface
     private $recreateBody;
 
     /**
+     * @var bool
+     */
+    private $isLockReleased = true;
+
+    /**
      * PredisStore constructor.
      *
      * @param ClientInterface $client
@@ -400,6 +405,8 @@ class PredisStore implements StoreInterface
         $result = $this->client->hSetNx($this->lockKey, $metadataKey, 1);
         $this->client->disconnect();
 
+        $this->isLockReleased = false;
+
         return $result == 1;
     }
 
@@ -417,6 +424,8 @@ class PredisStore implements StoreInterface
         $this->client->connect();
         $result = $this->client->hdel($this->lockKey, $metadataKey);
         $this->client->disconnect();
+
+        $this->isLockReleased = true;
 
         return $result == 1;
     }
@@ -458,10 +467,14 @@ class PredisStore implements StoreInterface
     }
 
     /**
-     * Cleanups storage.
+     * Cleans up storage.
      */
     public function cleanup()
     {
+        if ($this->isLockReleased) {
+            return;
+        }
+
         $this->client->connect();
         $result = $this->client->del($this->lockKey);
         $this->client->disconnect();
