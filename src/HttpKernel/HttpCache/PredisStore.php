@@ -484,7 +484,7 @@ class PredisStore implements StoreInterface
             header('HTTP/1.0 503 Service Unavailable');
             header('Retry-After: 10');
 
-            echo '503 Service Unavailable';
+            echo 'Cannot unlock store.';
         }
     }
 }
