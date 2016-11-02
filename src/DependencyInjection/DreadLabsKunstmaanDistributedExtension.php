@@ -65,22 +65,22 @@ class DreadLabsKunstmaanDistributedExtension extends Extension implements Prepen
                 'doctrine_cache' => [
                     'type' => 'predis',
                     'alias' => 'doctrine_cache',
-                    'dsn' => 'redis://%redis_host%/%redis_db_cache%',
+                    'dsns' => ['redis://%redis_host%/%redis_db_cache%'],
                 ],
                 'framework_annotations' => [
                     'type' => 'predis',
                     'alias' => 'framework_annotations',
-                    'dsn' => 'redis://%redis_host%/%redis_db_annotations%',
+                    'dsns' => ['redis://%redis_host%/%redis_db_annotations%'],
                 ],
                 'http_cache' => [
                     'type' => 'predis',
                     'alias' => 'http_cache',
-                    'dsn' => 'redis://%redis_host%/%redis_db_http_cache%',
+                    'dsns' => ['redis://%redis_host%/%redis_db_http_cache%'],
                 ],
                 'kunstmaanadmin_cache' => [
                     'type' => 'predis',
                     'alias' => 'kunstmaanadmin_cache',
-                    'dsn' => 'redis://%redis_host%/%redis_db_kunstmaanadmin_cache%',
+                    'dsns' => ['redis://%redis_host%/%redis_db_kunstmaanadmin_cache%'],
                 ],
             ],
         ];
